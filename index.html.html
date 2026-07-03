@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luma Deco · Premium Home Decor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --bg-primary: #0b0e14;
+            --bg-secondary: #131a24;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gold: #d4a373;
+            --gold-glow: rgba(212, 163, 115, 0.3);
+            --terracotta: #c87a5e;
+            --text-primary: #f0ede8;
+            --text-secondary: #a0988c;
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            --radius: 16px;
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: var(--gold);
+            color: #0b0e14;
+            padding: 0.9rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: var(--transition);
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 40px var(--gold-glow);
+            background: #e8c09a;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            background: rgba(11, 14, 20, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 2rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            letter-spacing: -0.5px;
+        }
+        .logo span {
+            color: var(--gold);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--text-primary);
+            border-radius: 4px;
+        }
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            background: radial-gradient(ellipse at 20% 30%, #1e2a3a 0%, #0b0e14 70%);
+            position: relative;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            will-change: transform;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .blob-1 {
+            width: 500px;
+            height: 500px;
+            background: #d4a373;
+            top: -10%;
+            right: -10%;
+            animation: floatBlob 20s ease-in-out infinite alternate;
+        }
+        .blob-2 {
+            width: 400px;
+            height: 400px;
+            background: #c87a5e;
+            bottom: -10%;
+            left: -10%;
+            animation: floatBlob 25s ease-in-out infinite alternate-reverse;
+        }
+        @keyframes floatBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(50px, -60px) scale(1.2);
+            }
+            66% {
+                transform: translate(-40px, 50px) scale(0.8);
+            }
+            100% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+        }
+        .hero-grid {
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+        .hero-content h1 {
+            font-size: 4.2rem;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+        .hero-content h1 i {
+            font-style: italic;
+            color: var(--gold);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 480px;
+            margin: 1.5rem 0 2.5rem;
+            font-weight: 300;
+        }
+        .hero-image img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 24px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+            aspect-ratio: 3/4;
+            object-fit: cover;
+            border: 1px solid var(--glass-border);
+        }
+        .products {
+            padding: 5rem 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--text-primary);
+        }
+        .section-title p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+        .section-title .accent-line {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0.8rem auto 0;
+            border-radius: 4px;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 2.5rem;
+        }
+        .product-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(212, 163, 115, 0.05);
+        }
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background: #1a212b;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        .product-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: var(--gold);
+            color: #0b0e14;
+            padding: 0.3rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-info h3 {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+        .product-rating {
+            color: var(--gold);
+            font-size: 0.9rem;
+            margin: 0.3rem 0;
+        }
+        .product-rating span {
+            color: var(--text-secondary);
+        }
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin: 0.5rem 0 1rem;
+        }
+        .product-price .current {
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--gold);
+        }
+        .product-price .old {
+            text-decoration: line-through;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        .btn-affiliate {
+            display: block;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.06);
+            color: var(--text-primary);
+            padding: 0.8rem;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        .btn-affiliate:hover {
+            background: var(--gold);
+            color: #0b0e14;
+            border-color: var(--gold);
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+        .newsletter {
+            padding: 5rem 2rem;
+            text-align: center;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--glass-border);
+        }
+        .newsletter h2 {
+            font-size: 2.8rem;
+            color: var(--text-primary);
+        }
+        .newsletter h2 i {
+            color: var(--gold);
+        }
+        .newsletter p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .newsletter form {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .newsletter input {
+            flex: 1;
+            min-width: 220px;
+            padding: 0.9rem 1.5rem;
+            border-radius: 60px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass-bg);
+            color: var(--text-primary);
+            outline: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .newsletter input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .newsletter input::placeholder {
+            color: var(--text-secondary);
+        }
+        .newsletter .btn-primary {
+            background: var(--gold);
+            color: #0b0e14;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .newsletter .btn-primary:hover {
+            background: #e8c09a;
+        }
+        #formFeedback {
+            margin-top: 1rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+        footer {
+            background: #070a0f;
+            color: var(--text-secondary);
+            padding: 3rem 2rem 1.5rem;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+        footer .logo {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+        }
+        footer .logo span {
+            color: var(--gold);
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--glass-border);
+            padding-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+        }
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-content p {
+                margin: 1.5rem auto 2.5rem;
+            }
+            .hero-image img {
+                max-width: 350px;
+            }
+            .hero-content h1 {
+                font-size: 3.2rem;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: rgba(11, 14, 20, 0.98);
+                backdrop-filter: blur(20px);
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                padding: 2rem;
+                gap: 1.5rem;
+                border-bottom: 1px solid var(--glass-border);
+            }
+            .nav-links.open {
+                display: flex;
+            }
+            .hamburger {
+                display: flex;
+            }
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .blob-1,
+            .blob-2 {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">Luma<span>Deco</span></div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#products">Shop</a></li>
+                <li><a href="#newsletter">Newsletter</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="blob blob-1" aria-hidden="true"></div>
+        <div class="blob blob-2" aria-hidden="true"></div>
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1>Where <i>Dark</i> Meets <br /><i>Golden</i> Luxury</h1>
+                <p>Moody, sophisticated home decor curated for those who appreciate the finer, darker side of design.</p>
+                <a href="#products" class="btn-primary">Explore Collection →</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=600&q=80" alt="Dark luxury living room" />
+            </div>
+        </div>
+    </section>
+
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Bestselling Picks</h2>
+                <p>Curated for the dark aesthetic — click to shop.</p>
+                <div class="accent-line"></div>
+            </div>
+            <div class="product-grid" id="productGrid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&q=80" alt="Vase" />
+                        <span class="product-badge">-20%</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Ribbed Ceramic Vase Set</h3>
+                        <div class="product-rating">★★★★☆ <span>(342)</span></div>
+                        <div class="product-price">
+                            <span class="current">$44.50</span>
+                            <span class="old">$55.00</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=400&q=80" alt="Wall Art" />
+                        <span class="product-badge">Best Seller</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Abstract Botanical Print Set</h3>
+                        <div class="product-rating">★★★★★ <span>(521)</span></div>
+                        <div class="product-price">
+                            <span class="current">$89.00</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1600494603989-9650cf6dad3f?w=400&q=80" alt="Lamp" />
+                        <span class="product-badge">New</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Woven Rattan Pendant Lamp</h3>
+                        <div class="product-rating">★★★★★ <span>(198)</span></div>
+                        <div class="product-price">
+                            <span class="current">$124.00</span>
+                            <span class="old">$150.00</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1592078615290-033ee584e267?w=400&q=80" alt="Candle" />
+                        <span class="product-badge">-15%</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Luxury Scented Candle Trio</h3>
+                        <div class="product-rating">★★★★☆ <span>(673)</span></div>
+                        <div class="product-price">
+                            <span class="current">$38.20</span>
+                            <span class="old">$45.00</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1532372576444-dda954194ad6?w=400&q=80" alt="Blanket" />
+                        <span class="product-badge">Cozy</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Chunky Knit Throw Blanket</h3>
+                        <div class="product-rating">★★★★★ <span>(410)</span></div>
+                        <div class="product-price">
+                            <span class="current">$67.50</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?w=400&q=80" alt="Table" />
+                        <span class="product-badge">Premium</span>
+                    </div>
+                    <div class="product-info">
+                        <h3>Organic Modern Coffee Table</h3>
+                        <div class="product-rating">★★★★★ <span>(284)</span></div>
+                        <div class="product-price">
+                            <span class="current">$279.00</span>
+                            <span class="old">$320.00</span>
+                        </div>
+                        <a href="#" class="btn-affiliate" target="_blank">Shop Now →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+        <div>
+            <h2>Get the <i>Dark Edit</i></h2>
+            <p>Exclusive drops, moody styling tips, and gold-tier deals.</p>
+            <form id="newsletterForm">
+                <input type="email" placeholder="Enter your email" required />
+                <button type="submit" class="btn-primary">Subscribe →</button>
+            </form>
+            <div id="formFeedback"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="logo">Luma<span>Deco</span></div>
+        <div class="footer-links">
+            <a href="#">Affiliate Disclosure</a>
+            <a href="#">Privacy</a>
+            <a href="#">Contact</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 Luma Deco. Made with ♥ for dark aesthetic lovers.<br />
+            <span style="font-size:0.8rem;">As an affiliate, we may earn a commission.</span>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.product-card');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            cards.forEach(card => observer.observe(card));
+
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('open');
+                });
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => navLinks.classList.remove('open'));
+                });
+            }
+
+            const form = document.getElementById('newsletterForm');
+            const feedback = document.getElementById('formFeedback');
+            if (form && feedback) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input').value.trim();
+                    if (email) {
+                        feedback.textContent = '✅ Welcome to the dark side. Check your inbox.';
+                        this.reset();
+                        setTimeout(() => feedback.textContent = '', 5000);
+                    }
+                });
+            }
+
+            console.log('🌑 Luma Deco Dark Edition is LIVE! Replace # links with your affiliate URLs.');
+        });
+    </script>
+
+</body>
+</html>
